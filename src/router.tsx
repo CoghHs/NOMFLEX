@@ -3,6 +3,8 @@ import App from "./App";
 import Home from "./screen/Home";
 import Search from "./screen/Search";
 import Popular from "./screen/Popular";
+import NowPlaying from "./screen/NowPlaying";
+import ComingSoon from "./screen/ComingSoon";
 
 export const router = createBrowserRouter([
   {
@@ -18,13 +20,21 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "popular",
+        path: "Popular",
         element: <Popular />,
       },
       {
-        path: "search",
-        element: <Search />,
+        path: "coming-soon",
+        element: <ComingSoon />,
       },
+      {
+        path: "now-playing",
+        element: <NowPlaying />,
+      },
+      // {
+      //   path: "search",
+      //   element: <Search />,
+      // },
     ],
   },
 ]);

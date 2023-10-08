@@ -2,16 +2,15 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import {
   IAPIResponse,
-  IGetMoviesResult,
   IMovieDetail,
+  getComingSoon,
   getMovie,
-  getPopular,
+  getNowPlaying,
   makeImagePath,
 } from "../api";
+import MovieDetail from "../components/MovieDetail";
 import styled from "styled-components";
 import { motion, useScroll } from "framer-motion";
-import MovieDetail from "../components/MovieDetail";
-import { url } from "inspector";
 
 const Wrapper = styled.div`
   padding: 80px;
@@ -52,6 +51,7 @@ const MovieTitle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 18px;
 `;
 
 const movieListVariants = {
@@ -74,13 +74,13 @@ const movieItemVariants = {
   end: { scale: 1, opacity: 1 },
 };
 
-function Popular() {
+function NowPlaying() {
   const { scrollY } = useScroll();
   const [clicked, setClicked] = useState(false);
   const [movieId, setMovieId] = useState<string>("");
   const { data, isLoading } = useQuery<IAPIResponse>(
-    ["movies", "popular"],
-    getPopular
+    ["movies", "nowPlaying"],
+    getNowPlaying
   );
   const { data: movieDetail, isLoading: Loading } = useQuery<IMovieDetail>(
     ["movie", movieId],
@@ -116,11 +116,11 @@ function Popular() {
           </MovieList>
           {clicked ? (
             <MovieDetail
-              scrollY={scrollY.get()}
               data={movieDetail}
               setClicked={setClicked}
               clicked={clicked}
               isLoading={isLoading}
+              scrollY={scrollY.get()}
             />
           ) : null}
         </div>
@@ -129,4 +129,4 @@ function Popular() {
   );
 }
 
-export default Popular;
+export default NowPlaying;

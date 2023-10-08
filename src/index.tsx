@@ -34,7 +34,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	background-color: black;
+	background-color: ${(props) => props.theme.black.veryDark};
 	height: 200vh;
 	line-height: 1;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

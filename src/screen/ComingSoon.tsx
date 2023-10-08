@@ -2,16 +2,14 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import {
   IAPIResponse,
-  IGetMoviesResult,
   IMovieDetail,
+  getComingSoon,
   getMovie,
-  getPopular,
   makeImagePath,
 } from "../api";
+import MovieDetail from "../components/MovieDetail";
 import styled from "styled-components";
 import { motion, useScroll } from "framer-motion";
-import MovieDetail from "../components/MovieDetail";
-import { url } from "inspector";
 
 const Wrapper = styled.div`
   padding: 80px;
@@ -44,8 +42,8 @@ const MovieImg = styled(motion.img)`
   border-radius: 20px;
   width: 300px;
   height: 400px;
-  object-fit: cover;
   margin-bottom: 15px;
+  object-fit: cover;
 `;
 
 const MovieTitle = styled.h1`
@@ -74,13 +72,13 @@ const movieItemVariants = {
   end: { scale: 1, opacity: 1 },
 };
 
-function Popular() {
+function ComingSoon() {
   const { scrollY } = useScroll();
   const [clicked, setClicked] = useState(false);
   const [movieId, setMovieId] = useState<string>("");
   const { data, isLoading } = useQuery<IAPIResponse>(
-    ["movies", "popular"],
-    getPopular
+    ["movies", "comingSoon"],
+    getComingSoon
   );
   const { data: movieDetail, isLoading: Loading } = useQuery<IMovieDetail>(
     ["movie", movieId],
@@ -129,4 +127,4 @@ function Popular() {
   );
 }
 
-export default Popular;
+export default ComingSoon;

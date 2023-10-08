@@ -47,6 +47,7 @@ const Overview = styled.p`
 const Slider = styled.div`
   position: relative;
   top: -100px;
+  margin-bottom: 200px;
   h3 {
     font-size: 28px;
     padding: 20px;
@@ -62,6 +63,7 @@ const Row = styled(motion.div)`
 `;
 
 const Box = styled(motion.div)<{ bgPhoto: string }>`
+  border-radius: 10px;
   background-color: white;
   height: 200px;
   background-size: cover;
@@ -104,7 +106,7 @@ const BigMovie = styled(motion.div)`
   right: 0;
   left: 0;
   margin: 0 auto;
-  background-color: ${(props) => props.theme.black.lighter};
+  background-color: ${(props) => props.theme.black.veryDark};
   border-radius: 15px;
   overflow: hidden;
 `;
@@ -126,9 +128,16 @@ const BigTitle = styled(motion.h3)`
 
 const BigOverView = styled.p`
   padding: 0px 20px;
-  color: ${(props) => props.theme.white.lighter};
+  color: ${(props) => props.theme.white.darker};
   position: relative;
   top: -26px;
+`;
+
+const NowPlayingSlide = styled(motion.div)``;
+
+const SliderWrap = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
 `;
 
 const rowVariants = {
@@ -206,6 +215,7 @@ function Home() {
             <Title>{data?.results[0].title}</Title>
             <Overview>{data?.results[0].overview}</Overview>
           </Banner>
+
           <Slider>
             <h3>Now Playing</h3>
             <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
@@ -241,6 +251,7 @@ function Home() {
               </Row>
             </AnimatePresence>
           </Slider>
+
           <AnimatePresence>
             {bigMovieMatch ? (
               <>
