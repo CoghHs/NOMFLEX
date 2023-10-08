@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { router } from "./router";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { theme } from "./theme";
 import { RecoilRoot } from "recoil";
 import { RouterProvider } from "react-router-dom";
@@ -33,7 +34,12 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	background-color: black;
+	height: 200vh;
 	line-height: 1;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-weight: 300;
+	color: ${(props) => props.theme.white.darker};
 }
 ol, ul {
 	list-style: none;
@@ -56,16 +62,20 @@ a {
 }
 `;
 
+const client = new QueryClient();
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </QueryClientProvider>
     </RecoilRoot>
   </React.StrictMode>
 );

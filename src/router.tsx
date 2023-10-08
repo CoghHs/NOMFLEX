@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./screen/Home";
 import Search from "./screen/Search";
-import Tv from "./screen/Tv";
+import Popular from "./screen/Popular";
 
 export const router = createBrowserRouter([
   {
@@ -14,11 +14,15 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/tv",
-        element: <Tv />,
+        path: "movies/:id",
+        element: <Home />,
       },
       {
-        path: "/search",
+        path: "popular",
+        element: <Popular />,
+      },
+      {
+        path: "search",
         element: <Search />,
       },
     ],
